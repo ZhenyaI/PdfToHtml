@@ -44,7 +44,7 @@ namespace PdfRepresantation
                 Log.Debug("line:" + string.Join("", lineTexts.Select(t => t.Value)));
             lines.Add(new PdfTextLineDetails
             {
-                Bottom = @group.Key/2F,
+                Bottom = @group.Key / 2F,
                 Left = left,
                 Right = pageContext.PageWidth - right,
                 Texts = lineTexts,
@@ -149,7 +149,7 @@ namespace PdfRepresantation
                 bool currentRTL =
                     RightToLeftManager.Instance.AssignNeutral(pageContext.PageRTL, current, blocks, index);
                 bool opositeDirection = pageContext.PageRTL != currentRTL;
-//                bool digitLtr = current.IsDigit && last?.IsDigit==true;
+                //                bool digitLtr = current.IsDigit && last?.IsDigit==true;
                 if (lastBlock != null &&
                     Equals(lastBlock.StrokeColore, current.StrokeColore) &&
                     lastBlock.FontSize == current.FontSize &&
@@ -164,8 +164,8 @@ namespace PdfRepresantation
                 }
                 else
                 {
-//                    var stateRtl =
-//                        RightToLeftManager.Instance.PageElemtRtl(pageRTL, currentRightToLeft); // && !digitLtr);
+                    //                    var stateRtl =
+                    //                        RightToLeftManager.Instance.PageElemtRtl(pageRTL, currentRightToLeft); // && !digitLtr);
                     SeperateRtlLtr(opositeDirection, pageContext.PageRTL, current, lastBlock, text);
                     text = new PdfTextResult
                     {

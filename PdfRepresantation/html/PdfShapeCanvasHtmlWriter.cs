@@ -5,11 +5,11 @@ using System.Text;
 
 namespace PdfRepresantation
 {
-    public    class PdfShapeCanvasHtmlWriter:PdfShapeHtmlWriter
+    public class PdfShapeCanvasHtmlWriter : PdfShapeHtmlWriter
     {
         public override void AddShapes(PdfPageDetails page, StringBuilder sb)
         {
-                
+
             sb.Append(@"
     <canvas class=""canvas"" id=""canvas-").Append(page.PageNumber)
                 .Append("\" style=\"width: ")
@@ -40,7 +40,7 @@ namespace PdfRepresantation
                 if (i != 0)
                     sb.Append(",");
                 sb.Append("[");
-                var points =  shape.Lines[i].AllPoints.ToArray();
+                var points = shape.Lines[i].AllPoints.ToArray();
                 for (var j = 0; j < points.Length; j++)
                 {
                     if (j != 0)
@@ -51,12 +51,12 @@ namespace PdfRepresantation
                 sb.Append("]");
             }
 
-            sb.Append("],").Append((int) shape.ShapeOperation).Append(",");
+            sb.Append("],").Append((int)shape.ShapeOperation).Append(",");
             AppendColor(shape.StrokeColor, sb);
             sb.Append(",");
             AppendColor(shape.FillColor, sb);
             sb.Append(",").Append(shape.LineWidth)
-                .Append(",'").Append(shape.EvenOddRule?"evenodd":"nonzero").Append("',").Append("null").Append(");");
+                .Append(",'").Append(shape.EvenOddRule ? "evenodd" : "nonzero").Append("',").Append("null").Append(");");
         }
 
         public override void AddScript(StringBuilder sb)
@@ -99,7 +99,7 @@ namespace PdfRepresantation
         }
     </script>");
         }
-        protected   void AppendColor(Color? color, StringBuilder sb)
+        protected void AppendColor(Color? color, StringBuilder sb)
         {
             if (color.HasValue)
             {

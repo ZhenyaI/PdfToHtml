@@ -12,10 +12,10 @@ namespace PdfRepresantation
         public Color? StrokeColore { get; set; }
         public override string ToString() => Value;
     }
-    public class PdfLinkResult:PdfTextResult
+    public class PdfLinkResult : PdfTextResult
     {
-        public IList<PdfTextResult> Children { get; set; }=new List<PdfTextResult>();
+        public IList<PdfTextResult> Children { get; set; } = new List<PdfTextResult>();
         public string Link { get; set; }
-        public override string ToString() => string.Join("",Children)+"=>"+Link;
+        public override string ToString() => string.Join("", Children) + "=>" + Link;
     }
 }

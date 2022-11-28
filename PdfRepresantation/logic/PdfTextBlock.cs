@@ -18,7 +18,7 @@ namespace PdfRepresantation
         public Color? StrokeColore { get; set; }
         public float CharSpacing { get; set; }
         public string Link { get; set; }
-//        public bool IsDigit { get; set; }
+        //        public bool IsDigit { get; set; }
 
         public override string ToString() => Value;
     }

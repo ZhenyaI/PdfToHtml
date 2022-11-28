@@ -4,6 +4,7 @@ namespace PdfRepresantation
 {
     public class PdfPageDetails
     {
+        public IList<PdfTextBlock> Texts { get; set; }
         public IList<PdfTextLineDetails> Lines { get; set; }
         public IList<PdfImageDetails> Images { get; set; }
         public IList<ShapeDetails> Shapes { get; set; }

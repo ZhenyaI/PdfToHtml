@@ -30,7 +30,7 @@ namespace PdfRepresantation
             switch (shadingConstructed)
             {
                 case PdfShading.Axial axial:
-                    var axialFunction = (PdfDictionary) axial.GetFunction();
+                    var axialFunction = (PdfDictionary)axial.GetFunction();
                     GetFunctionDetails(axialFunction);
                     var coords = GetItemsFloat(axial.GetCoords());
                     var domain = GetItemsFloat(axial.GetDomain());
@@ -114,14 +114,14 @@ namespace PdfRepresantation
                     dict.GetAsInt(PdfName.BitsPerSample);
                     dict.GetAsInt(PdfName.Order);
                     encode = GetItemsInt(dict.GetAsArray(PdfName.Encode));
-                   var decode = GetItemsInt(dict.GetAsArray(PdfName.Decode));
-                   var range = GetItemsInt(dict.GetAsArray(PdfName.Range));
+                    var decode = GetItemsInt(dict.GetAsArray(PdfName.Decode));
+                    var range = GetItemsInt(dict.GetAsArray(PdfName.Range));
                     break;
                 case 2:
                     domain = GetItemsInt(dict.GetAsArray(PdfName.Domain));
                     var color1 = GetItemsFloat(dict.GetAsArray(PdfName.C0));
                     var color2 = GetItemsFloat(dict.GetAsArray(PdfName.C1));
-                    var n=dict.GetAsInt(PdfName.N);
+                    var n = dict.GetAsInt(PdfName.N);
                     break;
                 case 3:
                     domain = GetItemsInt(dict.GetAsArray(PdfName.Domain));

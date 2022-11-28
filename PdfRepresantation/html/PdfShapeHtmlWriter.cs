@@ -17,6 +17,6 @@ namespace PdfRepresantation
             margin: 0 auto 0 auto;
             display: block;
         }");
-       }
+        }
     }
 }

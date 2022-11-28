@@ -57,7 +57,7 @@ namespace PdfRepresantation
             if (fontSize > 0.99 && fontSize < 1.01)
             {
                 LogWrongFontSize("no font size. take height of line:" + height);
-               
+
                 return height * 1.05F;
             }
 
@@ -88,7 +88,7 @@ namespace PdfRepresantation
         private string lastLog;
         private void LogWrongFontSize(string m)
         {
-            if (!Log.DebugSupported||lastLog == m)
+            if (!Log.DebugSupported || lastLog == m)
                 return;
             lastLog = m;
             Log.Debug(m);

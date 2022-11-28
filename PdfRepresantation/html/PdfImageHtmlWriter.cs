@@ -14,7 +14,7 @@ namespace PdfRepresantation
         {
             this.embeddedImages = embeddedImages;
             this.dirImages = dirImages;
-            if (embeddedImages&&dirImages != null && Directory.Exists(dirImages))
+            if (embeddedImages && dirImages != null && Directory.Exists(dirImages))
                 Directory.CreateDirectory(dirImages);
 
         }
@@ -45,19 +45,19 @@ namespace PdfRepresantation
                 sb.Append(path);
             }
 
-//            if (image.Alt != null)
-//                sb.Append("\" alt=\"").Append(image.Alt);
+            //            if (image.Alt != null)
+            //                sb.Append("\" alt=\"").Append(image.Alt);
 
             sb.Append("\" style=\"")
                 .Append(page.RightToLeft ? "right" : "left")
-                .Append(":").Append((int) ((page.RightToLeft ? image.Right : image.Left)))
-                .Append("px; top:").Append((int) (image.Top)).Append("px\">");
+                .Append(":").Append((int)((page.RightToLeft ? image.Right : image.Left)))
+                .Append("px; top:").Append((int)(image.Top)).Append("px\">");
             ;
         }
 
         public virtual void AddStyle(StringBuilder sb)
         {
-                sb.Append(@"
+            sb.Append(@"
         .image{position:absolute}");
         }
     }

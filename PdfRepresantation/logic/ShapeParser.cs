@@ -21,22 +21,22 @@ namespace PdfRepresantation
 
         public virtual void ParsePath(PathRenderInfo data)
         {
-            var shapeOperation = (ShapeOperation) data.GetOperation();
+            var shapeOperation = (ShapeOperation)data.GetOperation();
             if (shapeOperation == ShapeOperation.None)
                 return;
             bool evenOddRule = data.GetRule() == PdfCanvasConstants.FillingRule.EVEN_ODD;
-            var fillColor = ColorManager.Instance.GetColor(data.GetFillColor(),data.GetGraphicsState().GetFillOpacity());
+            var fillColor = ColorManager.Instance.GetColor(data.GetFillColor(), data.GetGraphicsState().GetFillOpacity());
             if (shapeOperation != ShapeOperation.Stroke && (fillColor == null || fillColor == Color.Black))
                 return;
 
-            var strokeColor = ColorManager.Instance.GetColor(data.GetStrokeColor(),data.GetGraphicsState().GetStrokeOpacity());
+            var strokeColor = ColorManager.Instance.GetColor(data.GetStrokeColor(), data.GetGraphicsState().GetStrokeOpacity());
             var lineWidth = data.GetLineWidth();
             var lineCap = data.GetLineCapStyle();
             var ctm = data.GetCtm();
             var lines = ConvertLines(data.GetPath(), ctm).ToArray();
-            if(lines.Length==0)
+            if (lines.Length == 0)
                 return;
-            
+
 
             var shapeDetails = new ShapeDetails
             {
@@ -57,8 +57,8 @@ namespace PdfRepresantation
         protected IEnumerable<ShapeLine> ConvertLines(Path path, Matrix ctm)
         {
             return from subpath in path.GetSubpaths()
-                from line in subpath.GetSegments() 
-                select ConvertLine(line, ctm);
+                   from line in subpath.GetSegments()
+                   select ConvertLine(line, ctm);
         }
 
         protected ShapeLine ConvertLine(IShape line, Matrix ctm)
@@ -83,7 +83,7 @@ namespace PdfRepresantation
 
         protected ShapePoint ConvertPoint(Point p, Matrix ctm)
         {
-            Vector vector = new Vector((float) p.x, (float) p.y, 1);
+            Vector vector = new Vector((float)p.x, (float)p.y, 1);
             vector = vector.Cross(ctm);
             return new ShapePoint
             {

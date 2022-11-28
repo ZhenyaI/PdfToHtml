@@ -4,16 +4,16 @@ namespace PdfRepresantation
 {
     public class PdfConverter : IPdfConverter
     {
-        PdfHtmlWriter writer=new PdfHtmlWriter();
+        PdfHtmlWriter writer = new PdfHtmlWriter();
         public string ConvertToHtml(byte[] pdf)
         {
-            var details=PdfDetailsFactory.Create(pdf);
+            var details = PdfDetailsFactory.Create(pdf);
             return writer.ConvertPdf(details);
         }
 
         public string ConvertToText(byte[] pdf)
         {
-            var details=PdfDetailsFactory.Create(pdf);
+            var details = PdfDetailsFactory.Create(pdf);
             return details.ToString();
         }
 

@@ -9,22 +9,22 @@ namespace PdfRepresantation
         public static readonly RightToLeftManager Instance = new RightToLeftManager();
 
         Regex regexRtl = new Regex(@"[\u0600-\u06FF\u0590-\u05FF]");
-//        Regex regexRtlNeutral = new Regex(@"^[\s\[\]\(\)\:;\{\}\\\/\.\|\,=”""'\-\–\!\?\*\•]+$");
-//        Regex regexDigit = new Regex(@"^[\d]+$");
+        //        Regex regexRtlNeutral = new Regex(@"^[\s\[\]\(\)\:;\{\}\\\/\.\|\,=”""'\-\–\!\?\*\•]+$");
+        //        Regex regexDigit = new Regex(@"^[\d]+$");
 
         public bool IsRTL(string text)
         {
             return regexRtl.IsMatch(text);
         }
 
-//        public bool IsDigit(string text)
-//        {
-//            return regexDigit.IsMatch(text);
-//        }
+        //        public bool IsDigit(string text)
+        //        {
+        //            return regexDigit.IsMatch(text);
+        //        }
         public bool IsNeutral(IEnumerable<char> text)
         {
             return text.All(IsNeutral);
-//            return regexRtlNeutral.IsMatch(text as string??new string(text.ToArray()));
+            //            return regexRtlNeutral.IsMatch(text as string??new string(text.ToArray()));
         }
 
         public bool IsNeutral(char c)
@@ -53,11 +53,11 @@ namespace PdfRepresantation
 
         internal bool FindRtlOfNeutral(bool pageRightToLeft, IList<PdfTextBlock> blocks, int index)
         {
-//            for (int i = index - 1; i >= 0; i--)
-//            {
-//                if (blocks[i].IsRightToLeft == false)
-//                    return false;
-//            }
+            //            for (int i = index - 1; i >= 0; i--)
+            //            {
+            //                if (blocks[i].IsRightToLeft == false)
+            //                    return false;
+            //            }
             bool foundOppositeStart = false;
             for (int i = index - 1; i >= 0; i--)
             {
@@ -86,26 +86,26 @@ namespace PdfRepresantation
             }
 
             return foundOppositeStart && foundOppositeEnd ? !pageRightToLeft : pageRightToLeft;
-//            if (!pageRightToLeft)
-//            {
-//                for (int i = index - 1; i >= 0; i--)
-//                {
-//                    if (blocks[i].IsRightToLeft.HasValue)
-//                        return blocks[i].IsRightToLeft.Value;
-//                }
-//
-//                return true;
-//            }
-//            else
-//            {
-//                for (int i = index + 1; i < blocks.Count; i++)
-//                {
-//                    if (blocks[i].IsRightToLeft.HasValue)
-//                        return blocks[i].IsRightToLeft.Value;
-//                }
-//
-//                return false;
-//            }
+            //            if (!pageRightToLeft)
+            //            {
+            //                for (int i = index - 1; i >= 0; i--)
+            //                {
+            //                    if (blocks[i].IsRightToLeft.HasValue)
+            //                        return blocks[i].IsRightToLeft.Value;
+            //                }
+            //
+            //                return true;
+            //            }
+            //            else
+            //            {
+            //                for (int i = index + 1; i < blocks.Count; i++)
+            //                {
+            //                    if (blocks[i].IsRightToLeft.HasValue)
+            //                        return blocks[i].IsRightToLeft.Value;
+            //                }
+            //
+            //                return false;
+            //            }
         }
 
         public bool AssignNeutral(bool pageRightToLeft, PdfTextBlock current, IList<PdfTextBlock> blocks, int index)
@@ -167,10 +167,10 @@ namespace PdfRepresantation
                     ReverseText(item);
             }
 
-//            else if (IsDigit(text))
-//            {
-//                item.IsDigit = true;
-//            }
+            //            else if (IsDigit(text))
+            //            {
+            //                item.IsDigit = true;
+            //            }
         }
 
         private void ReverseText(PdfTextBlock item)

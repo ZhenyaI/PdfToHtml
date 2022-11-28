@@ -6,7 +6,7 @@ using iText.Kernel.Pdf.Canvas.Parser.Listener;
 
 namespace PdfRepresantation
 {
-    public class TextParser 
+    public class TextParser
     {
         public readonly IList<PdfTextBlock> texts = new List<PdfTextBlock>();
         public readonly Dictionary<PdfFont, PdfFontDetails> fonts = new Dictionary<PdfFont, PdfFontDetails>();
@@ -40,7 +40,7 @@ namespace PdfRepresantation
                 CharSpacing = textRenderInfo.GetSingleSpaceWidth(),
                 Font = GetFont(textRenderInfo),
             };
-            RightToLeftManager.Instance.AssignRtl(item,textRenderInfo.GetUnscaledWidth()<0);
+            RightToLeftManager.Instance.AssignRtl(item, textRenderInfo.GetUnscaledWidth() < 0);
             pageContext.LinkManager.AssignLink(item);
             texts.Add(item);
         }
@@ -55,6 +55,6 @@ namespace PdfRepresantation
 
             return font;
         }
-   
+
     }
 }

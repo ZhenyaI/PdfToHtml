@@ -10,5 +10,5 @@ namespace PdfRepresantation
         Task<string> ConvertToTextAsync(byte[] pdf);
     }
 
-    
+
 }

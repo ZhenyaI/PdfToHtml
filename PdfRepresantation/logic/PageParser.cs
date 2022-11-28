@@ -21,19 +21,19 @@ namespace PdfRepresantation
         public PageParser(PdfPage page, int pageNumber)
         {
             var pageSize = page.GetPageSize();
-            pageContext=new PageContext
+            pageContext = new PageContext
             {
                 Page = page,
                 PageNumber = pageNumber,
-                PageHeight =pageSize.GetHeight(),
+                PageHeight = pageSize.GetHeight(),
                 PageWidth = pageSize.GetWidth()
             };
             pageContext.LinkManager = new LinkManager(pageContext);
-            linesGenerator =  new LinesGenerator(pageContext);
+            linesGenerator = new LinesGenerator(pageContext);
             imageParser = new ImageParser(pageContext);
             shapeParser = new ShapeParser(pageContext);
             textParser = new TextParser(pageContext);
-            
+
             pageContext.LinkManager.FindLinks();
         }
 
@@ -45,13 +45,13 @@ namespace PdfRepresantation
                 case EventType.END_TEXT:
                 case EventType.CLIP_PATH_CHANGED: break;
                 case EventType.RENDER_PATH:
-                    shapeParser.ParsePath((PathRenderInfo) data);
+                    shapeParser.ParsePath((PathRenderInfo)data);
                     break;
                 case EventType.RENDER_TEXT:
-                    textParser.ParseText((TextRenderInfo) data);
+                    textParser.ParseText((TextRenderInfo)data);
                     break;
                 case EventType.RENDER_IMAGE:
-                    imageParser.ParseImage((ImageRenderInfo) data);
+                    imageParser.ParseImage((ImageRenderInfo)data);
                     break;
                 default: throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
@@ -60,7 +60,7 @@ namespace PdfRepresantation
 
         public ICollection<EventType> GetSupportedEvents()
         {
-            return new[] {EventType.RENDER_TEXT, EventType.RENDER_IMAGE, EventType.RENDER_PATH};
+            return new[] { EventType.RENDER_TEXT, EventType.RENDER_IMAGE, EventType.RENDER_PATH };
         }
 
         public virtual PdfPageDetails CreatePageDetails()
@@ -71,6 +71,7 @@ namespace PdfRepresantation
             return new PdfPageDetails
             {
                 Lines = lines,
+                Texts = textParser.texts,
                 RightToLeft = pageContext.PageRTL,
                 Images = imageParser.images,
                 PageNumber = pageContext.PageNumber,

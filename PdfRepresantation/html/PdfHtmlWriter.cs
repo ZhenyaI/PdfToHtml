@@ -88,7 +88,7 @@ namespace PdfRepresantation
         private static Dictionary<PdfFontDetails, int> CreateFontRef(IEnumerable<PdfFontDetails> fonts)
         {
             var fontRef = fonts
-                .Select((f, i) => new {f, i})
+                .Select((f, i) => new { f, i })
                 .ToDictionary(a => a.f, a => a.i);
             return fontRef;
         }
@@ -107,7 +107,7 @@ namespace PdfRepresantation
     <script>
         function init() {");
             textWriter.AddScriptInit(sb);
-                sb.Append(@"
+            sb.Append(@"
         }
     </script>");
             sb.Append($@"
@@ -118,7 +118,7 @@ namespace PdfRepresantation
             sb.Append(">");
         }
 
-        protected virtual  void EndHtml(StringBuilder sb)
+        protected virtual void EndHtml(StringBuilder sb)
         {
             sb.Append(@"
 </body>

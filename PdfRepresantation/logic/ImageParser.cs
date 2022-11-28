@@ -13,7 +13,7 @@ using iText.Kernel.Pdf.Canvas.Wmf;
 using iText.Kernel.Pdf.Xobject;
 using Org.BouncyCastle.Crypto.Modes;
 using Image = iText.Layout.Element.Image;
-using IOException = iText.IO.IOException;
+using IOException = iText.IO.Exceptions.IOException;
 using Rectangle = System.Drawing.Rectangle;
 
 namespace PdfRepresantation
@@ -37,7 +37,7 @@ namespace PdfRepresantation
             }
             catch (IOException e)
             {
-                Log.Info("Wrong format of image:"+ e.Message);
+                Log.Info("Wrong format of image:" + e.Message);
                 //wrong format of image
                 return;
             }
@@ -75,9 +75,9 @@ namespace PdfRepresantation
             var maskImage = new PdfImageXObject(maskStream);
             var bytesMask = maskImage.GetImageBytes();
             var bitmapMask = Bitmap.FromStream(new MemoryStream(bytesMask)) as Bitmap;
-   
+
             var bitmapResult = ApplyMask(bitmapImage, bitmapMask);
-       
+
             using (var memoryStream = new MemoryStream())
             {
                 bitmapResult.Save(memoryStream, bitmapImage.RawFormat);
@@ -100,9 +100,9 @@ namespace PdfRepresantation
             {
                 for (int y = 0; y < input.Height; y++)
                 {
-                    byte* ptrMask = (byte*) bitsMask.Scan0 + y * bitsMask.Stride;
-                    byte* ptrInput = (byte*) bitsInput.Scan0 + y * bitsInput.Stride;
-                    byte* ptrOutput = (byte*) bitsOutput.Scan0 + y * bitsOutput.Stride;
+                    byte* ptrMask = (byte*)bitsMask.Scan0 + y * bitsMask.Stride;
+                    byte* ptrInput = (byte*)bitsInput.Scan0 + y * bitsInput.Stride;
+                    byte* ptrOutput = (byte*)bitsOutput.Scan0 + y * bitsOutput.Stride;
                     for (int x = 0; x < input.Width; x++)
                     {
                         var index = 4 * x;

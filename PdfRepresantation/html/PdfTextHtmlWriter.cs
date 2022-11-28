@@ -9,7 +9,7 @@ namespace PdfRepresantation
 {
     public class PdfTextHtmlWriter
     {
-        NumberFormatInfo formatNumInClassName = new NumberFormatInfo {NumberDecimalSeparator = "-"};
+        NumberFormatInfo formatNumInClassName = new NumberFormatInfo { NumberDecimalSeparator = "-" };
 
         public virtual void AddFontStyle(Dictionary<PdfFontDetails, int> fontRef,
             IEnumerable<PdfTextLineDetails> allLines,
@@ -21,7 +21,7 @@ namespace PdfRepresantation
         .font-size-").Append((size / 2).ToString(formatNumInClassName))
                     .Append("{font-size:").Append(size / 2).Append("px;}");
             }
-                sb.Append(@"
+            sb.Append(@"
         .bold{font-weight: bold;}");
 
             foreach (var pair in fontRef)
@@ -65,11 +65,11 @@ namespace PdfRepresantation
         {
             sb.Append($@"
         <div class=""line"" style=""")
-                .Append("right:").Append((int) line.Right)
-                .Append("px;left:").Append((int) line.Left)
-                .Append("px;top:").Append((int) (line.Top))
-                .Append("px;width:").Append((int) (line.Width))
-                .Append("px;bottom:").Append((int) (page.Height - line.Bottom))
+                .Append("right:").Append((int)line.Right)
+                .Append("px;left:").Append((int)line.Left)
+                .Append("px;top:").Append((int)(line.Top))
+                .Append("px;width:").Append((int)(line.Width))
+                .Append("px;bottom:").Append((int)(page.Height - line.Bottom))
                 .Append("px\" >");
             PdfLinkResult link = null;
             foreach (var text in line.Texts)
@@ -90,14 +90,14 @@ namespace PdfRepresantation
         protected virtual void AddText(PdfTextResult text,
             Dictionary<PdfFontDetails, int> fontRef, StringBuilder sb)
         {
-            
+
 
             sb.Append($@"<span class=""baseline");
             AddFontClass(text, fontRef, sb);
             var b = text.StrokeColore?.GetBrightness();
             if (b > 0.9)
             {
-                sb.Append($@" darken");            
+                sb.Append($@" darken");
             }
             sb.Append("\" style=\"");
             AddColor(text, sb);
@@ -121,7 +121,7 @@ namespace PdfRepresantation
             Dictionary<PdfFontDetails, int> fontRef, StringBuilder sb)
         {
             sb.Append($@" font").Append(fontRef[text.Font] + 1);
-            if(text.Font.Bold)
+            if (text.Font.Bold)
                 sb.Append($@" bold");
             sb.Append(" font-size-")
                 .Append((Math.Round(text.FontSize * 2) / 2).ToString(formatNumInClassName));
@@ -149,7 +149,7 @@ namespace PdfRepresantation
                 else if (c <= 127)
                     sb.Append(c);
                 else
-                    sb.Append("&#").Append((int) c).Append(";");
+                    sb.Append("&#").Append((int)c).Append(";");
             }
         }
 

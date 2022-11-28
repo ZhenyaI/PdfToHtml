@@ -21,7 +21,7 @@ namespace PdfRepresantation
             {
                 case CalGray calGray:
                 case DeviceGray deviceGray:
-                    return FromGray(value[0],alpha);
+                    return FromGray(value[0], alpha);
                 case CalRgb calRgb:
                 case DeviceRgb deviceRgb:
                     return FromRGB(value[0], value[1], value[2], alpha);
@@ -29,10 +29,10 @@ namespace PdfRepresantation
                     return FromCmyk(value[0], value[1], value[2], value[3], alpha);
                 case IccBased iccBased:
                     var colorSpace = colorPfd.GetColorSpace();
-                    var source = ((PdfArray) colorSpace.GetPdfObject()).GetAsStream(1);
+                    var source = ((PdfArray)colorSpace.GetPdfObject()).GetAsStream(1);
                     var alt = source.GetAsName(PdfName.Alternate);
                     if (Equals(alt, PdfName.CalGray) || Equals(alt, PdfName.DeviceGray))
-                        return FromGray(value[0],alpha);
+                        return FromGray(value[0], alpha);
                     if (Equals(alt, PdfName.CalRGB) || Equals(alt, PdfName.DeviceRGB))
                         return FromRGB(value[0], value[1], value[2], alpha);
                     if (Equals(alt, PdfName.DeviceCMYK))
@@ -69,24 +69,24 @@ namespace PdfRepresantation
 
         private Color FromRGB(float red, float green, float blue, float alpha)
         {
-            return Color.FromArgb((int) (alpha * 255),
-                (int) (red * 255),
-                (int) (green * 255),
-                (int) (blue * 255));
+            return Color.FromArgb((int)(alpha * 255),
+                (int)(red * 255),
+                (int)(green * 255),
+                (int)(blue * 255));
         }
 
-        private static Color? FromGray(float gray,float alpha)
+        private static Color? FromGray(float gray, float alpha)
         {
-            var g = (int) (gray * 255);
-            return Color.FromArgb((int) (alpha * 255), g, g, g);
+            var g = (int)(gray * 255);
+            return Color.FromArgb((int)(alpha * 255), g, g, g);
         }
 
         private static Color FromCmyk(float c, float m, float y, float k, float alpha)
         {
-            var r = (int) (255 * (1 - c) * (1 - k));
-            var g = (int) (255 * (1 - m) * (1 - k));
-            var b = (int) (255 * (1 - y) * (1 - k));
-            return Color.FromArgb((int) (alpha * 255), r, g, b);
+            var r = (int)(255 * (1 - c) * (1 - k));
+            var g = (int)(255 * (1 - m) * (1 - k));
+            var b = (int)(255 * (1 - y) * (1 - k));
+            return Color.FromArgb((int)(alpha * 255), r, g, b);
         }
 
         public Color? GetColor(TextRenderInfo text)
@@ -116,9 +116,9 @@ namespace PdfRepresantation
             }
 
 
-//           var value = text.GetStrokeColor().GetColorValue();
-//           if(value.Length==1&&value[0]==0)
-//               value = text.GetFillColor().GetColorValue();
+            //           var value = text.GetStrokeColor().GetColorValue();
+            //           if(value.Length==1&&value[0]==0)
+            //               value = text.GetFillColor().GetColorValue();
             return GetColor(color, alpha);
         }
     }

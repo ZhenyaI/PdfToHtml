@@ -24,12 +24,12 @@ namespace PdfRepresantation
 
         private void AddPoint(ShapePoint p, StringBuilder sb)
         {
-            sb.Append(" ").Append(Math.Round(p.X,2)).Append(" ").Append(Math.Round(p.Y,2));
+            sb.Append(" ").Append(Math.Round(p.X, 2)).Append(" ").Append(Math.Round(p.Y, 2));
         }
 
         private void AddShape(ShapeDetails shape, StringBuilder sb)
         {
-            if(shape.ShapeOperation==ShapeOperation.None)
+            if (shape.ShapeOperation == ShapeOperation.None)
                 return;
             ShapePoint lastEnd = null;
             sb.Append(@"
@@ -68,11 +68,11 @@ namespace PdfRepresantation
 
             sb.Append("\" stroke-width=\"").Append(shape.LineWidth)
                 .Append("\" fill=\"");
-            AppendColor(shape.ShapeOperation==ShapeOperation.Stroke?null:shape.FillColor, sb);
-           if(shape.EvenOddRule)
+            AppendColor(shape.ShapeOperation == ShapeOperation.Stroke ? null : shape.FillColor, sb);
+            if (shape.EvenOddRule)
                 sb.Append("\" fill-rule=\"evenodd");
             sb.Append("\" stroke=\"");
-            AppendColor(shape.ShapeOperation==ShapeOperation.Fill?null:shape.StrokeColor, sb);
+            AppendColor(shape.ShapeOperation == ShapeOperation.Fill ? null : shape.StrokeColor, sb);
             sb.Append("\"/>");
         }
 
